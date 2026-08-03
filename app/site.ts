@@ -10,9 +10,18 @@ export const SITE = {
   locale: "ko_KR",
   language: "ko-KR",
   description:
-    "펀초주소와 펀초이스 관련 공개 페이지의 주장, 호스트, 확인일을 기록하고 공식성 여부를 분리해 보여주는 유흥픽 편집 데스크의 독립 관찰 사이트입니다.",
+    "펀초주소 최신 확인 가이드. 펀초·펀초이스 관련 공개 페이지의 주장·호스트·확인일을 기록하고, 밤의달인(bamdalin.com) 바로가기와 공식성 여부를 분리해 보여줍니다.",
+  keywords: [
+    "펀초주소",
+    "펀초 주소",
+    "펀초이스",
+    "펀초이스 주소",
+    "펀초주소 최신",
+    "밤의달인",
+    "bamdalin.com",
+  ],
   alternativeUrl:
-    "https://bamdalin.com/?utm_source=funcho.yuheungpick.com&utm_medium=referral&utm_campaign=funcho_signal",
+    "https://bamdalin.com/?utm_source=funcho2&utm_medium=referral&utm_campaign=funcho_address",
   sources: [
     {
       label: "최신주소 바로가기 페이지",
@@ -63,6 +72,7 @@ export function pageMetadata({
   return {
     title,
     description,
+    keywords: [...SITE.keywords],
     alternates: { canonical: url },
     openGraph: {
       type: "website",
@@ -71,7 +81,14 @@ export function pageMetadata({
       url,
       title,
       description,
-      images: [{ url: socialImage, width: 1200, height: 630, alt: SITE.koreanName }],
+      images: [
+        {
+          url: socialImage,
+          width: 1200,
+          height: 630,
+          alt: "펀초주소 관찰실 · 펀초이스 주소 확인 · bamdalin.com 바로가기",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",

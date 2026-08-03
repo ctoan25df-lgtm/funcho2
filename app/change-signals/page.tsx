@@ -1,4 +1,4 @@
-import { ArticleHeader, Breadcrumb } from "../components/SiteChrome";
+import { ArticleHeader, BamdalinPanel, Breadcrumb } from "../components/SiteChrome";
 import { breadcrumbSchema, jsonLd, pageMetadata, SITE } from "../site";
 
 export const metadata = pageMetadata({
@@ -92,6 +92,7 @@ export default function ChangeSignalsPage() {
           <p>주소를 확인하더라도 로그인 정보, 결제 정보, 개인식별정보를 입력하기 전에는 브라우저 보안 경고와 사이트 운영 정보를 별도로 확인하세요.</p>
         </aside>
       </div>
+      <BamdalinPanel />
     </main>
   );
 }

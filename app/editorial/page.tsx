@@ -1,4 +1,4 @@
-import { ArticleHeader, Breadcrumb } from "../components/SiteChrome";
+import { ArticleHeader, BamdalinPanel, Breadcrumb } from "../components/SiteChrome";
 import { breadcrumbSchema, jsonLd, pageMetadata, SITE } from "../site";
 
 export const metadata = pageMetadata({
@@ -84,12 +84,13 @@ export default function EditorialPage() {
           <p className="micro-label">RELATIONSHIP DISCLOSURE</p>
           <h2>밤의달인과의 관계</h2>
           <p>
-            일부 페이지에는 별도 플랫폼인 밤의달인으로 연결되는 홍보성 링크가 포함됩니다.
-            해당 링크는 펀초이스의 주소 이전이나 공식 제휴를 뜻하지 않으며 검색엔진이 관계를
-            구분할 수 있도록 sponsored와 nofollow 속성을 사용합니다.
+            일부 페이지에는 별도 플랫폼인 밤의달인(bamdalin.com)으로 연결되는 바로가기가 포함됩니다.
+            해당 링크는 펀초이스의 주소 이전이나 공식 제휴를 뜻하지 않으며, 검색엔진이 관계를
+            구분할 수 있도록 sponsored 속성을 사용합니다.
           </p>
         </aside>
       </div>
+      <BamdalinPanel />
     </main>
   );
 }

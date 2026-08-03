@@ -321,6 +321,19 @@ a {
   margin-top: 18px;
 }
 
+.signal-console > a {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.signal-console > a:hover {
+  text-decoration: underline;
+}
+
 .ticker {
   overflow: hidden;
   border-block: 2px solid var(--ink);

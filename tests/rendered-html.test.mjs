@@ -11,22 +11,23 @@ async function get(path) {
   return { response, html };
 }
 
-test("home renders distinct editorial content and transparent relationship copy", async () => {
+test("home renders bamdalin.com primary CTA and transparent relationship copy", async () => {
   const { response, html } = await get("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   assert.match(html, /펀초주소/);
-  assert.match(html, /단일 공식 주소/);
-  assert.match(html, /별도의 선택지/);
-  assert.match(html, /rel="sponsored nofollow noopener noreferrer"/);
+  assert.match(html, /최신 주소는 bamdalin\.com/);
+  assert.match(html, /밤의달인 바로가기/);
+  assert.match(html, /utm_source=funcho2/);
+  assert.match(html, /rel="noopener noreferrer sponsored"/);
   assert.match(html, /rel="canonical" href="https:\/\/funcho\.yuheungpick\.com"/);
   assert.doesNotMatch(html, /chatgpt\.site|brocpn/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
-test("all editorial routes render a unique heading and canonical URL", async () => {
+test("all editorial routes render a unique heading, canonical URL, and bamdalin CTA", async () => {
   const routes = [
-    ["/", "펀초주소 관찰 기록"],
+    ["/", "최신 주소는 bamdalin.com"],
     ["/address-ledger", "펀초주소 기록 원장"],
     ["/name-map", "비슷한 이름을 같은 운영자로 보지 않습니다"],
     ["/change-signals", "주소 변경은 하나의 문구보다 여러 신호로 확인합니다"],
@@ -37,6 +38,8 @@ test("all editorial routes render a unique heading and canonical URL", async () 
     const { response, html } = await get(path);
     assert.equal(response.status, 200, path);
     assert.match(html, new RegExp(heading), path);
+    assert.match(html, /밤의달인 바로가기/, path);
+    assert.match(html, /utm_source=funcho2/, path);
     const canonicalPath = path === "/" ? "" : path;
     assert.match(
       html,

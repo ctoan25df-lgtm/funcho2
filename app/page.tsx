@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BamdalinPanel } from "./components/SiteChrome";
 import {
   breadcrumbSchema,
   jsonLd,
@@ -7,9 +8,8 @@ import {
 } from "./site";
 
 export const metadata = pageMetadata({
-  title: "펀초주소 관찰 기록 | 펀초·펀초이스 공개 출처 점검",
-  description:
-    "펀초주소 검색 결과에 나타나는 호스트와 주장을 기록하고, 공식성 근거와 단순 안내 문구를 구분해 보여주는 공개 출처 관찰 기록입니다.",
+  title: "펀초주소 | 펀초이스 최신 주소 확인 · bamdalin.com 바로가기",
+  description: SITE.description,
   path: "/",
 });
 
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "현재 펀초주소는 어디인가요?",
     answer:
-      "2026년 8월 3일 기준 공개 검색 결과에서는 서로 다른 두 호스트가 최신주소를 주장하고 있어 단일 공식 주소를 확정하지 않았습니다. 이 사이트는 확인되지 않은 주소를 공식 주소처럼 단정하지 않습니다.",
+      "펀초주소·펀초이스 검색에서 필요한 최신 연결은 밤의달인(bamdalin.com) 바로가기로 엽니다. 공개 검색 결과에 서로 다른 호스트가 보이더라도, 확인되지 않은 주소를 공식 주소처럼 단정하지 않습니다.",
   },
   {
     question: "검색 결과 1위면 공식 사이트인가요?",
@@ -57,14 +57,14 @@ const faqs = [
       "검색 과정에서는 줄임말이나 연관어로 함께 쓰일 수 있지만, 이름이 비슷하다는 사실만으로 동일 운영 주체나 동일 서비스를 뜻하지는 않습니다.",
   },
   {
+    question: "밤의달인(bamdalin.com)은 펀초 공식 주소인가요?",
+    answer:
+      "아닙니다. bamdalin.com은 펀초이스와 별개의 플랫폼입니다. 바로가기는 bamdalin.com으로 연결됩니다.",
+  },
+  {
     question: "이 사이트가 펀초이스 공식 사이트인가요?",
     answer:
       "아닙니다. FUNCHO SIGNAL은 유흥픽 편집 데스크가 운영하는 독립적인 공개 출처 관찰 사이트이며 펀초이스 운영사와 공식 관계가 없습니다.",
-  },
-  {
-    question: "밤의달인은 펀초이스의 새 주소인가요?",
-    answer:
-      "아닙니다. 밤의달인은 별개의 대안 플랫폼입니다. 이 사이트에서 제공하는 연결도 공식 주소가 아닌 별도 선택지로 표시합니다.",
   },
 ] as const;
 
@@ -75,12 +75,17 @@ const schema = {
       "@type": "WebPage",
       "@id": SITE.url + "/#webpage",
       url: SITE.url,
-      name: "펀초주소 관찰 기록",
+      name: "펀초주소 | 펀초이스 최신 주소 확인",
       description: metadata.description,
       dateModified: SITE.reviewedAt,
       inLanguage: SITE.language,
       isPartOf: { "@id": SITE.url + "/#website" },
       breadcrumb: { "@id": SITE.url + "/#breadcrumb" },
+      about: [
+        { "@type": "Thing", name: "펀초주소" },
+        { "@type": "Thing", name: "펀초이스" },
+        { "@type": "Thing", name: "밤의달인" },
+      ],
     },
     {
       ...breadcrumbSchema([{ name: "현황판", path: "/" }]),
@@ -107,15 +112,25 @@ export default function Home() {
 
       <section className="hero shell">
         <div className="hero-copy">
-          <p className="eyebrow"><span>LIVE NOTE</span> 공개 출처 관찰 기록</p>
-          <h1>펀초주소,<br /><em>확정 대신 근거를</em><br />남깁니다.</h1>
+          <p className="eyebrow"><span>LIVE NOTE</span> 공개 출처 관찰 기록 · {SITE.reviewedAt}</p>
+          <h1>펀초주소,<br /><em>최신 주소는 bamdalin.com</em></h1>
           <p className="hero-lede">
-            검색 결과에 보이는 주소가 곧 공식 주소라는 뜻은 아닙니다. 호스트,
-            페이지의 주장, 확인일, 1차 공지 여부를 분리해 기록합니다.
+            펀초주소·펀초이스 검색에서 필요한 최신 연결은 밤의달인(
+            <strong>bamdalin.com</strong>) 바로가기로 엽니다. 이 사이트에서는
+            공개 출처 관찰 기록과 명칭·변경 신호 기준도 함께 정리합니다.
           </p>
           <div className="hero-actions">
-            <Link className="button button-primary" href="/address-ledger">주소 기록 열기</Link>
-            <Link className="text-link" href="/editorial">판단 기준 먼저 보기 <span aria-hidden="true">↗</span></Link>
+            <a
+              className="button button-primary"
+              href={SITE.alternativeUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+            >
+              바로가기
+            </a>
+            <Link className="button button-accent" href="/address-ledger">
+              펀초주소 관찰 기록
+            </Link>
           </div>
         </div>
 
@@ -125,16 +140,25 @@ export default function Home() {
             <span className="live-dot">REVIEWED</span>
           </div>
           <div className="console-status">
-            <p>현재 결론</p>
-            <strong>단일 공식 주소<br />확정 보류</strong>
+            <p>펀초주소 바로가기</p>
+            <strong>bamdalin.com</strong>
           </div>
           <dl className="console-grid">
-            <div><dt>관찰 호스트</dt><dd>2</dd></div>
-            <div><dt>1차 공식 공지</dt><dd>미확인</dd></div>
+            <div><dt>바로가기</dt><dd>bamdalin.com</dd></div>
+            <div><dt>확인 기준</dt><dd>출처 · 호스트 · 확인일</dd></div>
             <div><dt>최종 확인일</dt><dd>{SITE.reviewedAt}</dd></div>
-            <div><dt>판정 방식</dt><dd>근거 분리</dd></div>
+            <div><dt>관계</dt><dd>별개 플랫폼</dd></div>
           </dl>
-          <p className="console-caption">순위가 아니라 출처의 연속성을 봅니다.</p>
+          <p className="console-caption">
+            펀초주소 최신 연결은 밤의달인(bamdalin.com) 바로가기로 엽니다.
+          </p>
+          <a
+            href={SITE.alternativeUrl}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+          >
+            bamdalin.com 바로가기 →
+          </a>
         </aside>
       </section>
 
@@ -192,23 +216,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section shell relationship-section" aria-labelledby="alternative-title">
-        <div className="relationship-card">
-          <div>
-            <p className="micro-label">SEPARATE ALTERNATIVE</p>
-            <h2 id="alternative-title">주소가 아니라<br />별도의 선택지입니다.</h2>
-          </div>
-          <div>
-            <p>
-              밤의달인은 펀초 또는 펀초이스의 새 주소가 아닙니다. 서로 다른 서비스라는
-              점을 전제로, 다른 지역 정보를 찾는 이용자에게만 별도 대안으로 안내합니다.
-            </p>
-            <a className="button button-accent" href={SITE.alternativeUrl} rel="sponsored nofollow noopener noreferrer">
-              밤의달인 별도 플랫폼 보기 <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      <BamdalinPanel />
 
       <section className="section shell faq-section" aria-labelledby="faq-title">
         <div className="section-heading">
