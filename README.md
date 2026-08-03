@@ -40,3 +40,4 @@ npm run sites:package
 - `/name-map` — 관련 명칭 구분
 - `/change-signals` — 주소 변경 판단 신호
 - `/editorial` — 운영자, 출처 및 정정 원칙
+# funcho2
