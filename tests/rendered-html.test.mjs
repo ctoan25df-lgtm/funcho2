@@ -1,0 +1,51 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+
+const baseUrl = process.env.TEST_BASE_URL ?? "http://localhost:3004";
+
+async function get(path) {
+  const response = await fetch(baseUrl + path, {
+    headers: { accept: "text/html" },
+  });
+  const html = await response.text();
+  return { response, html };
+}
+
+test("home renders distinct editorial content and transparent relationship copy", async () => {
+  const { response, html } = await get("/");
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+  assert.match(html, /펀초주소/);
+  assert.match(html, /단일 공식 주소/);
+  assert.match(html, /별도의 선택지/);
+  assert.match(html, /rel="sponsored nofollow noopener noreferrer"/);
+  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+});
+
+test("all editorial routes render a unique heading and canonical URL", async () => {
+  const routes = [
+    ["/address-ledger", "펀초주소 기록 원장"],
+    ["/name-map", "비슷한 이름을 같은 운영자로 보지 않습니다"],
+    ["/change-signals", "주소 변경은 하나의 문구보다 여러 신호로 확인합니다"],
+    ["/editorial", "누가 기록했고, 어떻게 판단했는지 공개합니다"],
+  ];
+
+  for (const [path, heading] of routes) {
+    const { response, html } = await get(path);
+    assert.equal(response.status, 200, path);
+    assert.match(html, new RegExp(heading), path);
+    assert.match(html, new RegExp('rel="canonical" href="https://funcho\\.yuheungpick\\.com' + path), path);
+  }
+});
+
+test("robots and sitemap expose the canonical host", async () => {
+  const robots = await fetch(baseUrl + "/robots.txt");
+  assert.equal(robots.status, 200);
+  assert.match(await robots.text(), /Sitemap: https:\/\/funcho\.yuheungpick\.com\/sitemap\.xml/);
+
+  const sitemap = await fetch(baseUrl + "/sitemap.xml");
+  assert.equal(sitemap.status, 200);
+  const xml = await sitemap.text();
+  assert.match(xml, /https:\/\/funcho\.yuheungpick\.com\/address-ledger/);
+  assert.match(xml, /https:\/\/funcho\.yuheungpick\.com\/editorial/);
+});

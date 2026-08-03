@@ -1,0 +1,30 @@
+{
+  "name": "funcho-signal-2026",
+  "main": "index.js",
+  "compatibility_date": "2026-05-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "no_bundle": true,
+  "rules": [
+    {
+      "type": "ESModule",
+      "globs": ["**/*.js", "**/*.mjs"]
+    },
+    {
+      "type": "CompiledWasm",
+      "globs": ["**/*.wasm"],
+      "fallthrough": false
+    },
+    {
+      "type": "Data",
+      "globs": ["**/*.bin"],
+      "fallthrough": false
+    }
+  ],
+  "assets": {
+    "directory": "../client",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
