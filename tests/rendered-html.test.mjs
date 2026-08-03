@@ -19,11 +19,14 @@ test("home renders distinct editorial content and transparent relationship copy"
   assert.match(html, /단일 공식 주소/);
   assert.match(html, /별도의 선택지/);
   assert.match(html, /rel="sponsored nofollow noopener noreferrer"/);
+  assert.match(html, /rel="canonical" href="https:\/\/funcho\.yuheungpick\.com"/);
+  assert.doesNotMatch(html, /chatgpt\.site|brocpn/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
 test("all editorial routes render a unique heading and canonical URL", async () => {
   const routes = [
+    ["/", "펀초주소 관찰 기록"],
     ["/address-ledger", "펀초주소 기록 원장"],
     ["/name-map", "비슷한 이름을 같은 운영자로 보지 않습니다"],
     ["/change-signals", "주소 변경은 하나의 문구보다 여러 신호로 확인합니다"],
@@ -34,11 +37,16 @@ test("all editorial routes render a unique heading and canonical URL", async () 
     const { response, html } = await get(path);
     assert.equal(response.status, 200, path);
     assert.match(html, new RegExp(heading), path);
-    assert.match(html, new RegExp('rel="canonical" href="https://funcho\\.yuheungpick\\.com' + path), path);
+    const canonicalPath = path === "/" ? "" : path;
+    assert.match(
+      html,
+      new RegExp('rel="canonical" href="https://funcho\\.yuheungpick\\.com' + canonicalPath + '"'),
+      path,
+    );
   }
 });
 
-test("robots and sitemap expose the canonical host", async () => {
+test("robots and sitemap expose the canonical host without trailing slash on home", async () => {
   const robots = await fetch(baseUrl + "/robots.txt");
   assert.equal(robots.status, 200);
   assert.match(await robots.text(), /Sitemap: https:\/\/funcho\.yuheungpick\.com\/sitemap\.xml/);
@@ -46,6 +54,8 @@ test("robots and sitemap expose the canonical host", async () => {
   const sitemap = await fetch(baseUrl + "/sitemap.xml");
   assert.equal(sitemap.status, 200);
   const xml = await sitemap.text();
+  assert.match(xml, /<loc>https:\/\/funcho\.yuheungpick\.com<\/loc>/);
+  assert.doesNotMatch(xml, /<loc>https:\/\/funcho\.yuheungpick\.com\/<\/loc>/);
   assert.match(xml, /https:\/\/funcho\.yuheungpick\.com\/address-ledger/);
   assert.match(xml, /https:\/\/funcho\.yuheungpick\.com\/editorial/);
 });

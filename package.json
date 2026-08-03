@@ -11,6 +11,7 @@
     "start": "next start",
     "worker:build": "opennextjs-cloudflare build",
     "sites:package": "bash scripts/package-sites-next.sh",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "test": "node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern .next --ignore-pattern .open-next"
   },

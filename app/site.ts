@@ -41,8 +41,11 @@ export const ROUTES = [
   "/editorial",
 ] as const;
 
-export function absoluteUrl(path = "/") {
-  return new URL(path, SITE.url).toString();
+/** Canonical-safe absolute URL (no trailing slash; matches Next trailingSlash:false). */
+export function absoluteUrl(path = "/"): string {
+  if (!path || path === "/") return SITE.url;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${SITE.url}${normalized}`;
 }
 
 export function pageMetadata({
