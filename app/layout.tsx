@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   applicationName: SITE.name,
   title: {
-    default: "펀초주소 | 펀초이스 최신 주소 확인 · bamdalin.com 바로가기",
+    default: "펀초·펀초이스 명칭·호스트 신호 장부",
     template: "%s | " + SITE.name,
   },
   description: SITE.description,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     locale: SITE.locale,
     siteName: SITE.name,
     url: SITE.url,
-    title: "펀초주소 | 펀초이스 최신 주소 확인 · bamdalin.com 바로가기",
+    title: "펀초·펀초이스 명칭·호스트 신호 장부",
     description: SITE.description,
     images: [
       {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "펀초주소 | 펀초이스 최신 주소 확인 · bamdalin.com 바로가기",
+    title: "펀초·펀초이스 명칭·호스트 신호 장부",
     description: SITE.description,
     images: ["/og.png"],
   },

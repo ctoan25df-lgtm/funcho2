@@ -8,7 +8,7 @@ import {
 } from "./site";
 
 export const metadata = pageMetadata({
-  title: "펀초주소 | 펀초이스 최신 주소 확인 · bamdalin.com 바로가기",
+  title: "펀초·펀초이스 명칭·호스트 신호 장부",
   description: SITE.description,
   path: "/",
 });
@@ -42,9 +42,9 @@ const desks = [
 
 const faqs = [
   {
-    question: "현재 펀초주소는 어디인가요?",
+    question: "현재 펀초주소를 이 장부에서 단정하나요?",
     answer:
-      "펀초주소·펀초이스 검색에서 필요한 최신 연결은 밤의달인(bamdalin.com) 바로가기로 엽니다. 공개 검색 결과에 서로 다른 호스트가 보이더라도, 확인되지 않은 주소를 공식 주소처럼 단정하지 않습니다.",
+      "하지 않습니다. 공개 검색·안내 페이지에 서로 다른 호스트가 보이면 주장·호스트·확인일만 기록하고, 운영 주체 1차 공지와 채널 연속성이 맞기 전에는 공식 주소로 올리지 않습니다.",
   },
   {
     question: "검색 결과 1위면 공식 사이트인가요?",
@@ -54,17 +54,17 @@ const faqs = [
   {
     question: "펀초와 펀초이스는 같은 뜻인가요?",
     answer:
-      "검색 과정에서는 줄임말이나 연관어로 함께 쓰일 수 있지만, 이름이 비슷하다는 사실만으로 동일 운영 주체나 동일 서비스를 뜻하지는 않습니다.",
+      "검색어로는 함께 쓰이지만, 명칭 지도에서는 줄임말·브랜드명·실제 호스트를 분리합니다. 이름이 비슷하다는 사실만으로 동일 운영 주체나 동일 서비스를 뜻하지 않습니다.",
   },
   {
     question: "밤의달인(bamdalin.com)은 펀초 공식 주소인가요?",
     answer:
-      "아닙니다. bamdalin.com은 펀초이스와 별개의 플랫폼입니다. 바로가기는 bamdalin.com으로 연결됩니다.",
+      "아닙니다. 이 사이트는 펀초·펀초이스 명칭·호스트 신호만 기록하고, 밤의달인은 별도 공개 목록 플랫폼입니다. 신호 장부의 미확정 상태를 외부 목록 링크로 덮지 마세요.",
   },
   {
     question: "이 사이트가 펀초이스 공식 사이트인가요?",
     answer:
-      "아닙니다. FUNCHO SIGNAL은 유흥픽 편집 데스크가 운영하는 독립적인 공개 출처 관찰 사이트이며 펀초이스 운영사와 공식 관계가 없습니다.",
+      "아닙니다. FUNCHO SIGNAL은 유흥픽 편집 데스크가 운영하는 독립 신호 장부이며 펀초이스 운영사와 공식 관계가 없습니다.",
   },
 ] as const;
 
@@ -75,16 +75,16 @@ const schema = {
       "@type": "WebPage",
       "@id": SITE.url + "/#webpage",
       url: SITE.url,
-      name: "펀초주소 | 펀초이스 최신 주소 확인",
+      name: "펀초·펀초이스 명칭·호스트 신호 장부",
       description: metadata.description,
       dateModified: SITE.reviewedAt,
       inLanguage: SITE.language,
       isPartOf: { "@id": SITE.url + "/#website" },
       breadcrumb: { "@id": SITE.url + "/#breadcrumb" },
       about: [
-        { "@type": "Thing", name: "펀초주소" },
-        { "@type": "Thing", name: "펀초이스" },
-        { "@type": "Thing", name: "밤의달인" },
+        { "@type": "Thing", name: "펀초 명칭 지도" },
+        { "@type": "Thing", name: "펀초이스 호스트 신호" },
+        { "@type": "Thing", name: "펀초주소 변경 신호" },
       ],
       primaryImageOfPage: {
         "@type": "ImageObject",
@@ -129,24 +129,27 @@ export default function Home() {
       <section className="hero shell">
         <div className="hero-copy">
           <p className="eyebrow"><span>LIVE NOTE</span> 공개 출처 관찰 기록 · {SITE.reviewedAt}</p>
-          <h1>펀초주소,<br /><em>최신 주소는 bamdalin.com</em></h1>
+          <h1>펀초·펀초이스<br /><em>명칭·호스트 신호 장부</em></h1>
           <p className="hero-lede">
-            펀초주소·펀초이스 검색에서 필요한 최신 연결은 밤의달인(
-            <strong>bamdalin.com</strong>) 바로가기로 엽니다. 이 사이트에서는
-            공개 출처 관찰 기록과 명칭·변경 신호 기준도 함께 정리합니다.
+            비슷한 검색어와 공개 안내 페이지의 주장·호스트·확인일을 분리해
+            기록합니다. 강한 변경 신호와 약한 신호를 구분해, 확인되지 않은
+            주소를 공식처럼 단정하지 않습니다.
           </p>
           <div className="hero-actions">
+            <Link className="button button-primary" href="/name-map">
+              명칭 지도 보기
+            </Link>
+            <Link className="button button-accent" href="/address-ledger">
+              호스트 기록 보기
+            </Link>
             <a
-              className="button button-primary"
+              className="button button-accent"
               href={SITE.alternativeUrl}
               target="_blank"
               rel="noopener noreferrer sponsored"
             >
-              바로가기
+              밤의달인 공개 목록 보기
             </a>
-            <Link className="button button-accent" href="/address-ledger">
-              펀초주소 관찰 기록
-            </Link>
           </div>
         </div>
 
