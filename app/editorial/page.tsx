@@ -18,7 +18,12 @@ const schema = {
       description: metadata.description,
       dateModified: SITE.reviewedAt,
       inLanguage: SITE.language,
-      publisher: { "@id": SITE.url + "/#publisher" },
+      isPartOf: { "@id": SITE.url + "/#website" },
+      publisher: { "@id": SITE.url + "/#organization" },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: SITE.url + "/og.png",
+      },
     },
     breadcrumbSchema([
       { name: "현황판", path: "/" },

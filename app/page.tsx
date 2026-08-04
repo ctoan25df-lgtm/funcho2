@@ -86,13 +86,29 @@ const schema = {
         { "@type": "Thing", name: "펀초이스" },
         { "@type": "Thing", name: "밤의달인" },
       ],
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: SITE.url + "/og.png",
+      },
     },
     {
       ...breadcrumbSchema([{ name: "현황판", path: "/" }]),
       "@id": SITE.url + "/#breadcrumb",
     },
     {
+      "@type": "ItemList",
+      name: "펀초주소 관찰 데스크",
+      itemListElement: desks.map((desk, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: desk.title,
+        url: SITE.url + desk.href,
+        description: desk.description,
+      })),
+    },
+    {
       "@type": "FAQPage",
+      "@id": SITE.url + "/#faq",
       mainEntity: faqs.map((item) => ({
         "@type": "Question",
         name: item.question,
