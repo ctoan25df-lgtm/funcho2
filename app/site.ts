@@ -20,6 +20,10 @@ export const SITE = {
   ],
   alternativeUrl:
     "https://bamdalin.com/board/region/busan?utm_source=funcho2&utm_medium=referral&utm_campaign=funcho_address",
+  gyeongnamListingUrl:
+    "https://bamdalin.com/board/region/gyeongnam?utm_source=funcho2&utm_medium=referral&utm_campaign=funcho_address",
+  ulsanListingUrl:
+    "https://bamdalin.com/board/region/ulsan?utm_source=funcho2&utm_medium=referral&utm_campaign=funcho_address",
   sources: [
     {
       label: "최신주소 바로가기 페이지",

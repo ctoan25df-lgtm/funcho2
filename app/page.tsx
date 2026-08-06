@@ -148,7 +148,23 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer sponsored"
             >
-              밤의달인 부산 목록 보기
+              부산 목록
+            </a>
+            <a
+              className="button"
+              href={SITE.gyeongnamListingUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+            >
+              경남 목록
+            </a>
+            <a
+              className="button"
+              href={SITE.ulsanListingUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+            >
+              울산 목록
             </a>
           </div>
         </div>
@@ -160,24 +176,28 @@ export default function Home() {
           </div>
           <div className="console-status">
             <p>펀초주소 바로가기</p>
-            <strong>bamdalin.com/board/region/busan</strong>
+            <strong>bamdalin.com/board/region</strong>
           </div>
           <dl className="console-grid">
-            <div><dt>바로가기</dt><dd>밤의달인 부산 목록</dd></div>
+            <div><dt>바로가기</dt><dd>밤의달인 부산·경남·울산</dd></div>
             <div><dt>확인 기준</dt><dd>출처 · 호스트 · 확인일</dd></div>
             <div><dt>최종 확인일</dt><dd>{SITE.reviewedAt}</dd></div>
             <div><dt>관계</dt><dd>별개 플랫폼</dd></div>
           </dl>
           <p className="console-caption">
-            펀초주소 최신 연결은 밤의달인 부산 목록으로 엽니다.
+            펀초주소 최신 연결은 밤의달인 지역 목록으로 엽니다.
           </p>
-          <a
-            href={SITE.alternativeUrl}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-          >
-            밤의달인 부산 목록 보기 →
-          </a>
+          <div className="button-row">
+            <a href={SITE.alternativeUrl} target="_blank" rel="noopener noreferrer sponsored">
+              부산 →
+            </a>
+            <a href={SITE.gyeongnamListingUrl} target="_blank" rel="noopener noreferrer sponsored">
+              경남 →
+            </a>
+            <a href={SITE.ulsanListingUrl} target="_blank" rel="noopener noreferrer sponsored">
+              울산 →
+            </a>
+          </div>
         </aside>
       </section>
 

@@ -89,22 +89,40 @@ export function BamdalinPanel() {
       <div className="relationship-card">
         <div>
           <p className="micro-label">SEPARATE PLATFORM</p>
-          <h2 id="bamdalin-title">밤의달인 부산 목록</h2>
+          <h2 id="bamdalin-title">밤의달인 지역 목록</h2>
         </div>
         <div>
           <p>
             펀초·펀초이스와 별개의 플랫폼인 밤의달인(
-            <strong>bamdalin.com</strong>) 부산 목록에서 정보를 확인할 수
-            있습니다.
+            <strong>bamdalin.com</strong>) 부산·경남·울산 목록에서 정보를
+            확인할 수 있습니다.
           </p>
-          <a
-            className="button button-accent"
-            href={SITE.alternativeUrl}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-          >
-            밤의달인 부산 목록 보기 <span aria-hidden="true">↗</span>
-          </a>
+          <div className="button-row">
+            <a
+              className="button button-accent"
+              href={SITE.alternativeUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+            >
+              부산 목록 <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              className="button"
+              href={SITE.gyeongnamListingUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+            >
+              경남 목록
+            </a>
+            <a
+              className="button"
+              href={SITE.ulsanListingUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+            >
+              울산 목록
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -16,8 +16,10 @@ test("home renders bamdalin.com primary CTA and transparent relationship copy", 
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   assert.match(html, /펀초주소/);
-  assert.match(html, /밤의달인 부산 목록/);
+  assert.match(html, /밤의달인 지역 목록/);
   assert.match(html, /bamdalin\.com\/board\/region\/busan/);
+  assert.match(html, /bamdalin\.com\/board\/region\/gyeongnam/);
+  assert.match(html, /bamdalin\.com\/board\/region\/ulsan/);
   assert.match(html, /utm_source=funcho2/);
   assert.match(html, /rel="noopener noreferrer sponsored"/);
   assert.match(html, /rel="canonical" href="https:\/\/funcho\.yuheungpick\.com"/);
@@ -27,7 +29,7 @@ test("home renders bamdalin.com primary CTA and transparent relationship copy", 
 
 test("all editorial routes render a unique heading, canonical URL, and bamdalin CTA", async () => {
   const routes = [
-    ["/", "밤의달인 부산 목록"],
+    ["/", "밤의달인 지역 목록"],
     ["/address-ledger", "펀초주소 기록 원장"],
     ["/name-map", "비슷한 이름을 같은 운영자로 보지 않습니다"],
     ["/change-signals", "주소 변경은 하나의 문구보다 여러 신호로 확인합니다"],
@@ -38,7 +40,9 @@ test("all editorial routes render a unique heading, canonical URL, and bamdalin 
     const { response, html } = await get(path);
     assert.equal(response.status, 200, path);
     assert.match(html, new RegExp(heading), path);
-    assert.match(html, /밤의달인 부산 목록/, path);
+    assert.match(html, /밤의달인 지역 목록/, path);
+    assert.match(html, /board\/region\/gyeongnam/, path);
+    assert.match(html, /board\/region\/ulsan/, path);
     assert.match(html, /utm_source=funcho2/, path);
     const canonicalPath = path === "/" ? "" : path;
     assert.match(
