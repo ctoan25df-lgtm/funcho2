@@ -19,7 +19,7 @@ export const SITE = {
     "펀초이스 주소 변경",
   ],
   alternativeUrl:
-    "https://bamdalin.com/?utm_source=funcho2&utm_medium=referral&utm_campaign=funcho_address",
+    "https://bamdalin.com/board/region/busan?utm_source=funcho2&utm_medium=referral&utm_campaign=funcho_address",
   sources: [
     {
       label: "최신주소 바로가기 페이지",

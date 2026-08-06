@@ -89,12 +89,13 @@ export function BamdalinPanel() {
       <div className="relationship-card">
         <div>
           <p className="micro-label">SEPARATE PLATFORM</p>
-          <h2 id="bamdalin-title">밤의달인 바로가기</h2>
+          <h2 id="bamdalin-title">밤의달인 부산 목록</h2>
         </div>
         <div>
           <p>
             펀초·펀초이스와 별개의 플랫폼인 밤의달인(
-            <strong>bamdalin.com</strong>)에서 정보를 확인할 수 있습니다.
+            <strong>bamdalin.com</strong>) 부산 목록에서 정보를 확인할 수
+            있습니다.
           </p>
           <a
             className="button button-accent"
@@ -102,7 +103,7 @@ export function BamdalinPanel() {
             target="_blank"
             rel="noopener noreferrer sponsored"
           >
-            바로가기 <span aria-hidden="true">↗</span>
+            밤의달인 부산 목록 보기 <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
