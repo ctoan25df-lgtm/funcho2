@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BamdalinPanel } from "./components/SiteChrome";
 import {
   breadcrumbSchema,
   jsonLd,
@@ -57,9 +56,9 @@ const faqs = [
       "검색어로는 함께 쓰이지만, 명칭 지도에서는 줄임말·브랜드명·실제 호스트를 분리합니다. 이름이 비슷하다는 사실만으로 동일 운영 주체나 동일 서비스를 뜻하지 않습니다.",
   },
   {
-    question: "밤의달인(bamdalin.com)은 펀초 공식 주소인가요?",
+    question: "funchodal.com은 현재 주소 후보인가요?",
     answer:
-      "아닙니다. 이 사이트는 펀초·펀초이스 명칭·호스트 신호만 기록하고, 밤의달인은 별도 공개 목록 플랫폼입니다. 신호 장부의 미확정 상태를 외부 목록 링크로 덮지 마세요.",
+      "아닙니다. 2026년 8월 12일 재확인 결과 만료 도메인 판매 페이지로 이동해 후보에서 제외했습니다. 과거 검색 결과나 저장된 링크가 남아 있어도 현재 응답을 다시 확인해야 합니다.",
   },
   {
     question: "이 사이트가 펀초이스 공식 사이트인가요?",
@@ -142,30 +141,9 @@ export default function Home() {
             <Link className="button button-accent" href="/address-ledger">
               호스트 기록 보기
             </Link>
-            <a
-              className="button button-accent"
-              href={SITE.alternativeUrl}
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-            >
-              부산 목록
-            </a>
-            <a
-              className="button"
-              href={SITE.gyeongnamListingUrl}
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-            >
-              경남 목록
-            </a>
-            <a
-              className="button"
-              href={SITE.ulsanListingUrl}
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-            >
-              울산 목록
-            </a>
+            <Link className="button" href="/change-signals">
+              변경 신호 점검표
+            </Link>
           </div>
         </div>
 
@@ -175,29 +153,19 @@ export default function Home() {
             <span className="live-dot">REVIEWED</span>
           </div>
           <div className="console-status">
-            <p>펀초주소 바로가기</p>
-            <strong>bamdalin.com/board/region</strong>
+            <p>현재 편집 판정</p>
+            <strong>단일 공식 호스트 확정 보류</strong>
           </div>
           <dl className="console-grid">
-            <div><dt>바로가기</dt><dd>밤의달인 부산·경남·울산</dd></div>
+            <div><dt>관찰 호스트</dt><dd>2개</dd></div>
             <div><dt>확인 기준</dt><dd>출처 · 호스트 · 확인일</dd></div>
             <div><dt>최종 확인일</dt><dd>{SITE.reviewedAt}</dd></div>
-            <div><dt>관계</dt><dd>별개 플랫폼</dd></div>
+            <div><dt>제외 후보</dt><dd>1개</dd></div>
           </dl>
           <p className="console-caption">
-            펀초주소 최신 연결은 밤의달인 지역 목록으로 엽니다.
+            공개 페이지의 자기 주장만으로 공식성을 확정하지 않습니다.
           </p>
-          <div className="button-row">
-            <a href={SITE.alternativeUrl} target="_blank" rel="noopener noreferrer sponsored">
-              부산 →
-            </a>
-            <a href={SITE.gyeongnamListingUrl} target="_blank" rel="noopener noreferrer sponsored">
-              경남 →
-            </a>
-            <a href={SITE.ulsanListingUrl} target="_blank" rel="noopener noreferrer sponsored">
-              울산 →
-            </a>
-          </div>
+          <div className="button-row"><Link href="/address-ledger">판정 근거 보기 →</Link></div>
         </aside>
       </section>
 
@@ -211,7 +179,7 @@ export default function Home() {
       <section className="section shell" aria-labelledby="source-title">
         <div className="section-heading split-heading">
           <div>
-            <p className="micro-label">SOURCE WATCH / 2026.08.03</p>
+            <p className="micro-label">SOURCE WATCH / 2026.08.12</p>
             <h2 id="source-title">지금 확인되는 공개 페이지</h2>
           </div>
           <p>아래는 공식 주소 목록이 아니라, 검색 결과에서 관찰한 페이지의 스냅샷입니다.</p>
@@ -254,8 +222,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <BamdalinPanel />
 
       <section className="section shell faq-section" aria-labelledby="faq-title">
         <div className="section-heading">

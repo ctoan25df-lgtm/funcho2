@@ -1,4 +1,4 @@
-import { ArticleHeader, BamdalinPanel, Breadcrumb } from "../components/SiteChrome";
+import { ArticleHeader, Breadcrumb } from "../components/SiteChrome";
 import { breadcrumbSchema, jsonLd, pageMetadata, SITE } from "../site";
 
 export const metadata = pageMetadata({
@@ -109,7 +109,6 @@ export default function NameMapPage() {
           </div>
         </section>
       </div>
-      <BamdalinPanel />
     </main>
   );
 }

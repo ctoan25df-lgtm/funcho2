@@ -11,7 +11,6 @@ export const metadata: Metadata = {
     template: "%s | " + SITE.name,
   },
   description: SITE.description,
-  keywords: [...SITE.keywords],
   alternates: { canonical: SITE.url },
   openGraph: {
     type: "website",
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "펀초주소 관찰실 · 펀초이스 주소 확인 · bamdalin.com 바로가기",
+        alt: "펀초주소 관찰실 · 펀초이스 공개 호스트 확인 기록",
       },
     ],
   },

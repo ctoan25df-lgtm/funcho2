@@ -1,4 +1,4 @@
-import { ArticleHeader, BamdalinPanel, Breadcrumb } from "../components/SiteChrome";
+import { ArticleHeader, Breadcrumb } from "../components/SiteChrome";
 import {
   breadcrumbSchema,
   jsonLd,
@@ -117,7 +117,6 @@ export default function AddressLedgerPage() {
           <p>확인 가능한 1차 공지나 정정 자료가 발견되면 출처와 변경일을 남긴 뒤 이 원장을 갱신합니다.</p>
         </aside>
       </div>
-      <BamdalinPanel />
     </main>
   );
 }

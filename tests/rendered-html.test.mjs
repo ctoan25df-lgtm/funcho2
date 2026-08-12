@@ -11,25 +11,23 @@ async function get(path) {
   return { response, html };
 }
 
-test("home renders bamdalin.com primary CTA and transparent relationship copy", async () => {
+test("home renders a current evidence verdict without outbound funnel links", async () => {
   const { response, html } = await get("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   assert.match(html, /펀초주소/);
-  assert.match(html, /밤의달인 지역 목록/);
-  assert.match(html, /bamdalin\.com\/board\/region\/busan/);
-  assert.match(html, /bamdalin\.com\/board\/region\/gyeongnam/);
-  assert.match(html, /bamdalin\.com\/board\/region\/ulsan/);
-  assert.match(html, /utm_source=funcho2/);
-  assert.match(html, /rel="noopener noreferrer sponsored"/);
+  assert.match(html, /단일 공식 호스트 확정 보류/);
+  assert.match(html, /2026-08-12/);
+  assert.doesNotMatch(html, /bamdalin\.com/);
+  assert.match(html, /funchodal\.com/);
   assert.match(html, /rel="canonical" href="https:\/\/funcho\.yuheungpick\.com"/);
   assert.doesNotMatch(html, /chatgpt\.site|brocpn/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
-test("all editorial routes render a unique heading, canonical URL, and bamdalin CTA", async () => {
+test("all editorial routes render a unique heading, canonical URL, and no funnel CTA", async () => {
   const routes = [
-    ["/", "밤의달인 지역 목록"],
+    ["/", "단일 공식 호스트 확정 보류"],
     ["/address-ledger", "펀초주소 기록 원장"],
     ["/name-map", "비슷한 이름을 같은 운영자로 보지 않습니다"],
     ["/change-signals", "주소 변경은 하나의 문구보다 여러 신호로 확인합니다"],
@@ -40,10 +38,7 @@ test("all editorial routes render a unique heading, canonical URL, and bamdalin 
     const { response, html } = await get(path);
     assert.equal(response.status, 200, path);
     assert.match(html, new RegExp(heading), path);
-    assert.match(html, /밤의달인 지역 목록/, path);
-    assert.match(html, /board\/region\/gyeongnam/, path);
-    assert.match(html, /board\/region\/ulsan/, path);
-    assert.match(html, /utm_source=funcho2/, path);
+    assert.doesNotMatch(html, /bamdalin\.com/, path);
     const canonicalPath = path === "/" ? "" : path;
     assert.match(
       html,
