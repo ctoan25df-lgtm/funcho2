@@ -7,7 +7,7 @@ import {
 } from "./site";
 
 export const metadata = pageMetadata({
-  title: "펀초·펀초이스 명칭·호스트 신호 장부",
+  title: "펀초이스 명칭 구분 | 펀초·펀초이스 표기 정리",
   description: SITE.description,
   path: "/",
 });
